@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";  // Pointing to the shared layout
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";  // Pointing to the shared layout
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .task-table th, .task-table td {
+        text-align: center;
+        vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Your Tasks</h2>
+        <p class="text-center">Below is the list of tasks assigned to you. You can view task details and download the attached PDFs.</p>
+
+        <!-- Task Table -->
+        <table class="table table-bordered table-striped task-table">
+            <thead>
+                <tr>
+                    <th>Task Title</th>
+                    <th>Description</th>
+                    <th>Created Date</th>
+                    <th>Deadline</th>
+                    <th>Time</th>
+                    <th>Download PDF</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <!-- Example Task 1 -->
+                <tr>
+                    <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item.CreatedDate</td>
+                        <td>@item.Deadline</td>
+                    <td>@{TimeSpan TimeLeft = item.Deadline - item.CreatedDate;
+int daysLeft = TimeLeft.Days;} @daysLeft Days</td>
+                    <td>
+                            <a href="@Url.Action("DownloadFile", "Task", new { id = item.Id })" class="btn btn-success">
+                                Download PDF
+                            </a>
+
+
+
+                    </td>
+                </tr>
+            </tbody>
+            }
+        </table>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
