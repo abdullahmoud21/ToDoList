@@ -33,10 +33,19 @@
         </div>
 
         <!-- Completion Status -->
-        <div class="mb-4 flex items-center">
-            <input name="IsCompleted" type="checkbox" class="mr-2 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-            <label class="text-gray-700 font-semibold">Completed</label>
+
+        <div class="mb-4">
+            <label for="IsCompleted" class="text-gray-700 font-semibold">Completed</label>
+            <select name="IsCompleted" id="IsCompleted" class="ml-3 border-gray-300 rounded p-2">
+                <option value="true" @(Model.IsCompleted ? "selected" : "")>Yes</option>
+                <option value="false" @(!Model.IsCompleted ? "selected" : "")>No</option>
+            </select>
         </div>
+
+
+
+
+
 
         <!-- Attachment Upload -->
         <div class="mb-4">
@@ -59,3 +68,4 @@
         </div>
     </form>
 </div>
+

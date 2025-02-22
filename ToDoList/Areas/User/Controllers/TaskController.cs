@@ -9,7 +9,7 @@ namespace ToDoList.Areas.User.Controllers
         ApplicationDbContext DbContext = new ApplicationDbContext();
         public IActionResult Index()
         {
-            var tasks = DbContext.Tasks;
+            var tasks = DbContext.Tasks.Where(e => e.IsCompleted == false);
             return View(tasks.ToList());
         }
         public IActionResult DownloadFile(int id)

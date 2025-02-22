@@ -110,6 +110,10 @@ namespace ToDoList.Areas.Admin.Controllers
             {
                 task.Attachment = taskinDB.Attachment;
             }
+            if (Request.Form.TryGetValue("IsCompleted", out var isCompletedValue))
+            {
+                taskinDB.IsCompleted = isCompletedValue == "true";
+            }
 
             dbContext.Tasks.Update(task);
             dbContext.SaveChanges();

@@ -1,9 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";  // Pointing to the shared layout
 }
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";  // Pointing to the shared layout
-}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,8 +45,7 @@
                         <td>@item.Description</td>
                         <td>@item.CreatedDate</td>
                         <td>@item.Deadline</td>
-                    <td>@{TimeSpan TimeLeft = item.Deadline - item.CreatedDate;
-int daysLeft = TimeLeft.Days;} @daysLeft Days</td>
+                    <td>@item.Daysleft()</td>
                     <td>
                             <a href="@Url.Action("DownloadFile", "Task", new { id = item.Id })" class="btn btn-success">
                                 Download PDF
